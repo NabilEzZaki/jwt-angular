@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit{
     console.log(this.registerForm.value);
     this.service.register(this.registerForm.value).subscribe(
       (response) => {
-        if(response.id != null) {
+        if (response.id != null) {
           alert("Hello " + response.name);
         }
       }
