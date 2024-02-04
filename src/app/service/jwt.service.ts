@@ -19,17 +19,23 @@ export class JwtService {
     return this.http.post(BASE_URL + 'login', loginRequest)
   }
 
-  private createAuhtorizationHeader() {
+  hello(): Observable<any> {
+    return this.http.get(BASE_URL + 'api/hello', {
+      headers: this.createAuhtorizationHeader()
+    })
+    
+  }
+  createAuhtorizationHeader(){
     const jwtToken = localStorage.getItem('jwt');
-    if (jwtToken) {
-      console.log("JWT token found in local storage", jwtToken);
+    if(jwtToken){
+      console.log("Jwt token found in local storage", jwtToken);
       return new HttpHeaders().set(
         "Authorization", "Bearer " + jwtToken
       )
-    } else {
-      console.log("JWT token not found in local storage");
+    }else{
+      console.log("Jwt token not found in local storage");
     }
-    return null;
+    return;
   }
 
 }
